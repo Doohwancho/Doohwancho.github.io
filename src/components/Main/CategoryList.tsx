@@ -13,14 +13,14 @@ type CategoryItemProps = {
     active: boolean;
 }
 
-type GatsByLinkProps = {
+type GatsbyLinkProps = {
     children: ReactNode;
     className?: string;
     to: string;
 } & CategoryItemProps
 
 
-const CategoryItem = styled(({ active, ...props }: GatsByLinkProps) => (
+const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
     <Link {...props} />
 ))<CategoryItemProps>`
   margin-right: 20px;
