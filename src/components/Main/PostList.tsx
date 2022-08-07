@@ -11,7 +11,6 @@ const POST_ITEM_DATA = {
   thumbnail: 'https://i.pinimg.com/originals/25/78/61/25786134576ce0344893b33a051160b1.jpg',
   link: '<https://www.google.co.kr/>',
 }
-
 const PostListWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -19,6 +18,12 @@ const PostListWrapper = styled.div`
   width: 768px;
   margin: 0 auto;
   padding: 50px 0 100px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 50px 20px;
+  }
 `
 
 type PostItemProps = {
