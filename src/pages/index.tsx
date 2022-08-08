@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import styled from '@Emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Introduction from 'components/Main/Introduction';
@@ -9,11 +9,7 @@ import { graphql } from 'gatsby'
 import queryString, { ParsedQuery } from 'query-string'
 
 
-const CATEGORY_LIST = {
-    ALL: 5,
-    Web: 3,
-    Mobile: 2,
-}
+
 
 
 
@@ -52,11 +48,36 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       ? 'All'
       : parsed.category
 
+      const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (
+          list: CategoryListProps['categoryList'],
+          {
+            node: {
+              frontmatter: { categories },
+            },
+          }: PostType,
+        ) => {
+          categories.forEach(category => {
+            if (list[category] === undefined) list[category] = 1;
+            else list[category]++;
+          });
+
+          list['All']++;
+
+          return list;
+        },
+        { All: 0 },
+      ),
+    [],
+  )
+
   return (
         <Container>
             <GlobalStyle />
             <Introduction />
-            <CategoryList selectedCategory={selectedCategory} categoryList={CATEGORY_LIST} />
+            <CategoryList selectedCategory={selectedCategory} categoryList={categoryList} />
             <PostList posts={edges} />
             <Footer />
         </Container>
