@@ -7,9 +7,7 @@ import CategoryList from 'components/Main/CategoryList';
 import PostList from 'components/Main/PostList';
 import { graphql } from 'gatsby'
 import queryString, { ParsedQuery } from 'query-string'
-
-
-
+import {PostListItemType} from 'src/types/PostItem.types';
 
 
 
@@ -57,7 +55,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
             node: {
               frontmatter: { categories },
             },
-          }: PostType,
+          }: PostListItemType,
         ) => {
           categories.forEach(category => {
             if (list[category] === undefined) list[category] = 1;
@@ -78,7 +76,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
             <GlobalStyle />
             <Introduction />
             <CategoryList selectedCategory={selectedCategory} categoryList={categoryList} />
-            <PostList posts={edges} />
+            <PostList selectedCategory={selectedCategory} posts={edges} />
             <Footer />
         </Container>
  );
