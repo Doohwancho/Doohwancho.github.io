@@ -6,6 +6,8 @@ import Footer from 'components/Common/Footer';
 import CategoryList from 'components/Main/CategoryList';
 import PostList from 'components/Main/PostList';
 import { graphql } from 'gatsby'
+import queryString, { ParsedQuery } from 'query-string'
+
 
 const CATEGORY_LIST = {
     ALL: 5,
@@ -22,24 +24,39 @@ const Container = styled.div`
 `;
 
 type IndexPageProps = {
+  location: {
+    search: string
+  },
   data: {
     allMarkdownRemark: {
       edges: PostListItemType[]
+    },
+    file: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }
 }
 
-
-const IndexPage: FunctionComponent = function ({
+const IndexPage: FunctionComponent<IndexPageProps> = function ({
+    location: { search },
     data: {
         allMarkdownRemark: { edges },
     }
 }) {
+
+    const parsed: ParsedQuery<string> = queryString.parse(search)
+    const selectedCategory: string =
+    typeof parsed.category !== 'string' || !parsed.category
+      ? 'All'
+      : parsed.category
+
   return (
         <Container>
             <GlobalStyle />
             <Introduction />
-            <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
+            <CategoryList selectedCategory={selectedCategory} categoryList={CATEGORY_LIST} />
             <PostList posts={edges} />
             <Footer />
         </Container>
