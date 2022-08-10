@@ -1,9 +1,8 @@
-import React, { FunctionComponent, useMemo } from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import PostItem from 'components/Main/PostItem' 
-import {string} from 'prop-types'
 import { PostListItemType } from 'types/PostItem.types'
 import useInfiniteScroll, { useInfiniteScrollType } from 'hooks/useInfiniteScroll'
+import PostItem from 'components/Main/PostItem' 
 
 type PostListProps = {
     selectedCategory: string,
