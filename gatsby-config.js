@@ -50,6 +50,12 @@ module.exports = {
     },
     'gatsby-plugin-sitemap',
     `gatsby-plugin-image` ,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    }, 
       {
       resolve: `gatsby-transformer-remark`,
       options: {
