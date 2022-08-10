@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useMemo } from 'react'
 import styled from '@Emotion/styled'
+import Template from 'components/Common/Template'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Introduction from 'components/Main/Introduction';
 import Footer from 'components/Common/Footer';
@@ -72,13 +73,11 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-        <Container>
-            <GlobalStyle />
+        <Template>
             <Introduction />
             <CategoryList selectedCategory={selectedCategory} categoryList={categoryList} />
             <PostList selectedCategory={selectedCategory} posts={edges} />
-            <Footer />
-        </Container>
+        </Template>
  );
 };
 

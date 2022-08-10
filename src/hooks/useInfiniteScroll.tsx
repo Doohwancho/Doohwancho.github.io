@@ -33,7 +33,7 @@ const useInfiniteScroll = function (
 
       setCount(value => value + 1);
       observer.disconnect();
-    },
+      },
   )
 
   useEffect(() => setCount(1), [selectedCategory])
