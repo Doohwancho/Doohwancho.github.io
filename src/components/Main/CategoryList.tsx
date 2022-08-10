@@ -2,13 +2,6 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
-export type CategoryListProps = {
-    selectedCategory: string
-    categoryList: {
-        [key: string]: number    
-    }
-}
-
 type CategoryItemProps = {
     active: boolean;
 }
@@ -18,6 +11,14 @@ type GatsbyLinkProps = {
     className?: string;
     to: string;
 } & CategoryItemProps
+
+
+export type CategoryListProps = {
+    selectedCategory: string
+    categoryList: {
+        [key: string]: number    
+    }
+}
 
 
 const CategoryListWrapper = styled.div`

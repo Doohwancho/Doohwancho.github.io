@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { PostListItemType } from 'types/PostItem.types'
-import useInfiniteScroll, { useInfiniteScrollType } from 'hooks/useInfiniteScroll'
 import PostItem from 'components/Main/PostItem' 
+
+import useInfiniteScroll, { useInfiniteScrollType } from 'hooks/useInfiniteScroll'
 
 type PostListProps = {
     selectedCategory: string,
