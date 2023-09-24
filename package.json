@@ -21,11 +21,13 @@
     "gatsby-plugin-sharp": "^3.14.1",
     "gatsby-plugin-sitemap": "^4.10.0",
     "gatsby-plugin-typescript": "^3.14.0",
+    "gatsby-remark-autolink-headers": "^4.12.0",
     "gatsby-remark-copy-linked-files": "^4.11.0",
     "gatsby-remark-external-links": "^0.0.4",
     "gatsby-remark-images": "^5.11.0",
     "gatsby-remark-prismjs": "^5.11.0",
     "gatsby-remark-smartypants": "^4.11.0",
+    "gatsby-remark-table-of-contents": "^1.0.0",
     "gatsby-source-filesystem": "^3.14.0",
     "gatsby-transformer-remark": "^4.11.0",
     "gatsby-transformer-sharp": "^3.14.0",
@@ -73,4 +75,3 @@
   },
   "packageManager": "yarn@3.0.2"
 }
-
