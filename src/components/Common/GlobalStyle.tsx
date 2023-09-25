@@ -42,11 +42,6 @@ const defaultStyle = css`
 		margin: 0;
 	}
 
-	// .table-of-contents li:before {
-	// 	content: "- ";  /* This adds the dash before each item */
-	// 	color: black;
-	// }
-
 	.table-of-contents li {
 		color: black;
 	}

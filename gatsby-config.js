@@ -59,6 +59,12 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+			{
+			resolve: `gatsby-remark-katex`,
+			  options: {
+				  strict: "ignore"
+			  }
+			},
 		  {
             resolve: `gatsby-remark-table-of-contents`,
             options: {
@@ -105,5 +111,6 @@ module.exports = {
         ],
       },
     },
+
   ],
 };

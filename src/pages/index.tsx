@@ -111,7 +111,7 @@ query getPostList {
       node {
         id
         fields {
-          slug
+          slug,
         }
         frontmatter {
           title
@@ -133,5 +133,5 @@ query getPostList {
     }
     publicURL
   }
-} 
+}
   `
