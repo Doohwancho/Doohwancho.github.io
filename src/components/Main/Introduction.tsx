@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import styled from '@Emotion/styled'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import ProfileImage from './ProfileImage'
+import { Link } from 'gatsby';
 
 type IntroductionProps = {
   profileImage: IGatsbyImageData
@@ -10,18 +11,20 @@ type IntroductionProps = {
 const Background = styled.div`
   width: 100%;
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  color: #ffffff;    
+  color: #ffffff;
 `;
 
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 768px;
+  align-content: baseline;
+  // width: 768px;
   height: 400px;
-  margin: 0 auto;
+  margin: 0;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -55,11 +58,12 @@ const Introduction: FunctionComponent<IntroductionProps> = function({
         return (
             <Background>
                 <Wrapper>
-                    <ProfileImage profileImage={profileImage} />
+                    {/* <ProfileImage profileImage={profileImage} /> */}
 
+					<Link to="/play/snakegame/SnakeGame">SnakeGame</Link>
                     <div>
-                        <SubTitle>Nice to Meet You,</SubTitle>
-                        <Title>I'm Junior Frontend Developer</Title>
+						{/* <SubTitle>...</SubTitle> */}
+                        <Title>Play!</Title>
                     </div>
                 </Wrapper>
             </Background>

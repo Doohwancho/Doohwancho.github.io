@@ -32,6 +32,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
+
+  /********************************
+   * markdown
+   */
+
   // Get All Markdown File For Paging
   const queryAllMarkdownData = await graphql(
     `

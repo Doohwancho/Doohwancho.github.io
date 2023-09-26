@@ -10,6 +10,8 @@ import Introduction from 'components/Main/Introduction';
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList';
 import PostList from 'components/Main/PostList';
 
+
+
 type IndexPageProps = {
   location: {
     search: string
