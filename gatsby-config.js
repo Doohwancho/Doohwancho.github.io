@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `My World`,
+    title: `playground`,
     description: `kick ass blog`,
     author: `@Cho`,
-    siteUrl: 'https://www.naver.com'
+    siteUrl: 'https://doohwancho.github.io/'
   },
   plugins: [
     {
@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: '<https://my-website.com/>',
+        siteUrl: 'https://doohwancho.github.io/',
         stripQueryString: true,
       },
     },

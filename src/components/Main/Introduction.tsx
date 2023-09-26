@@ -61,6 +61,7 @@ const Introduction: FunctionComponent<IntroductionProps> = function({
                     {/* <ProfileImage profileImage={profileImage} /> */}
 
 					<Link to="/play/snakegame/SnakeGame">SnakeGame</Link>
+					<Link to="/play/hamberger/Hamberger">Hamberger</Link>
                     <div>
 						{/* <SubTitle>...</SubTitle> */}
                         <Title>Play!</Title>
