@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-ps-template-tsx",
+    "path": "/ps",
+    "result": {"pageContext":{"slug":"/ps_rating/","content":"<p><img src=\"https://leetcode-stats.vercel.app/api?username=doohwancho&#x26;theme=Light\" alt=\"doohwancho&#x27;s LeetCode Stats\"></p>\n<p><a href=\"https://solved.ac/%EB%B0%B1%EC%A4%80%EC%95%84%EC%9D%B4%EB%94%94/\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://mazassumnida.wtf/api/v2/generate_badge?boj=pk8294\" alt=\"Solved.ac Profile\"></a></p>"}},
+    "staticQueryHashes": []}
