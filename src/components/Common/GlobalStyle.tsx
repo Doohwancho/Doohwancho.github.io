@@ -24,6 +24,30 @@ const defaultStyle = css`
     cursor: pointer;
   }
 
+  h1 {
+font-size: 2em;
+margin: 0;
+}
+
+h2 {
+font-size: 1.5em;
+margin-top: 0;
+margin-bottom: 0;
+}
+
+h3 {
+font-size: 1.17em;
+margin: 0;
+}
+
+h4 {
+font-size: 1em;
+}
+
+h5 {
+font-size: 0.83em;
+}
+
 
 
   //table of contents

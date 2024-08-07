@@ -1,15 +1,17 @@
 import React, { FunctionComponent } from 'react'
-import styled from '@Emotion/styled'
+import styled from '@emotion/styled'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
-import ProfileImage from './ProfileImage'
+import ProfileImage from '../../components/Main/ProfileImage'
 import { Link } from 'gatsby';
+import Sidebar from 'components/Navigation/Sidebar';
 
 type IntroductionProps = {
   profileImage: IGatsbyImageData
 }
 
 const Background = styled.div`
-  width: 100%;
+  width: 100vw - 150px;
+  height: 100vh;
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
   color: #ffffff;
 `;
@@ -51,24 +53,38 @@ const Title = styled.div`
   }
 `
 
+const StyledLink = styled(Link)`
+  color: #ffffff;
+  text-decoration: none;
 
-const Introduction: FunctionComponent<IntroductionProps> = function({
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+
+const ToyArts: FunctionComponent<IntroductionProps> = function({
   profileImage
 }) {
         return (
+        <div style={{ display: 'flex' }}>
+          <Sidebar />
+          <div style={{ marginLeft: '150px', width: 'calc(100% - 150px)' }}>
             <Background>
                 <Wrapper>
                     {/* <ProfileImage profileImage={profileImage} /> */}
 
-					<Link to="/play/snakegame/SnakeGame">SnakeGame</Link>
-					<Link to="/play/hamberger/Hamberger">Hamberger</Link>
+                    <StyledLink to="/arts/snakegame/SnakeGame">SnakeGame</StyledLink>
+                    <StyledLink to="/arts/hamberger/Hamberger">Hamberger</StyledLink>
                     <div>
-						{/* <SubTitle>...</SubTitle> */}
+                        {/* <SubTitle>...</SubTitle> */}
                         <Title>Play!</Title>
                     </div>
                 </Wrapper>
             </Background>
+          </div>
+        </div>
         )
     }
 
-export default Introduction
+export default ToyArts

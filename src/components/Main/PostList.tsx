@@ -49,5 +49,4 @@ const PostList: FunctionComponent<PostListProps> = function ({
     )
 }
 
-export default PostList
-
+export default PostList;

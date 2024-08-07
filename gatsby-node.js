@@ -28,63 +28,69 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-// Generate Post Page Through Markdown Data
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
-
-  /********************************
-   * markdown
-   */
-
-  // Get All Markdown File For Paging
-  const queryAllMarkdownData = await graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: {
-            order: DESC
-            fields: [frontmatter___date, frontmatter___title]
-          }
-        ) {
-          edges {
-            node {
-              fields {
-                slug,
-              }
+  // Query for all markdown files and PS file
+  const result = await graphql(`
+    {
+      allPosts: allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+        filter: { frontmatter: { type: { ne: "ps" } } }
+      ) {
+        edges {
+          node {
+            fields {
+              slug
             }
           }
         }
       }
-    `,
-  );
+      psPage: allMarkdownRemark(
+        filter: { frontmatter: { type: { eq: "ps" } } }
+        limit: 1
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            html
+          }
+        }
+      }
+    }
+  `);
 
-  // Handling GraphQL Query Error
-  if (queryAllMarkdownData.errors) {
-    reporter.panicOnBuild(`Error while running query`);
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
-  // Import Post Template Component
-  const PostTemplateComponent = path.resolve(
-    __dirname,
-    'src/templates/post_template.tsx',
-  );
 
-  // Page Generating Function
-  const generatePostPage = ({
-    node: {
-      fields: { slug },
-    },
-  }) => {
-    const pageOptions = {
-      path: slug,
+  // Generate regular post pages
+  const PostTemplateComponent = path.resolve(__dirname, 'src/templates/post_template.tsx');
+  
+  result.data.allPosts.edges.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
       component: PostTemplateComponent,
-      context: { slug },
-    };
+      context: { slug: node.fields.slug },
+    });
+  });
 
-    createPage(pageOptions);
-  };
-
-  // Generate Post Page And Passing Slug Props for Query
-  queryAllMarkdownData.data.allMarkdownRemark.edges.forEach(generatePostPage);
+  // Generate PS page
+  if (result.data.psPage.edges.length > 0) {
+    const PsTemplateComponent = path.resolve(__dirname, 'src/templates/ps_template.tsx');
+    const psNode = result.data.psPage.edges[0].node;
+    
+    createPage({
+      path: '/ps',
+      component: PsTemplateComponent,
+      context: { 
+        slug: psNode.fields.slug,
+        content: psNode.html
+      },
+    });
+  }
 };

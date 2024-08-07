@@ -1,0 +1,56 @@
+
+---
+date: '2023-10-11'
+title: 'explain computer architecture'
+categories: ['computer science']
+summary: 'explain computer architecture'
+thumbnail: 'images/test.png'
+---
+
+```toc
+exclude: Table of Contents
+tight: true
+ordered: false
+from-heading: 1
+to-heading: 6
+```
+# Meta
+
+## core question
+
+Q. what happen when you run a program that prins "Hello World"?
+
+### sub-questions derived from core question
+explain diff RISC CISC
+why use pipe-lining?
+explain difference between process/thread
+explain what PCB is
+explain context-switching
+explain multi-threading
+explain critical section
+explain race condition
+explain deadlock
+explain difference spin lock/mutex
+explain diff mutex semaphore
+explain CPU scheduling
+explain sync/async
+explain blocking/non blocking
+explain cache
+explain LRU caching
+explain virtual memory
+explain paging
+explain cache locality
+explain 가용 메모리 영역이 줄어들 때 나타나는 현상은?
+explain IPC의 종류 및 특징
+컴퓨터 부팅이 어떻게 되는지 설명할 수 있나요?
+논리게이트 NAND, XOR 연산이 무엇인지 간단하게 스스로 설명해보세요
+CPU의 구성요소(Program Counter, Instruction Register)에 대해 설명해보세요
+주 기억장치와 캐시 메모리의 차이가 무엇인지 알고 있나요
+하드디스크가 어떻게 데이터를 읽는지 헤드와 섹터 키워드를 이용해서 설명해보세요
+I/O 인터럽트가 일어나는 상황을 설명해보세요
+
+
+# Computer Architecture
+
+
+
