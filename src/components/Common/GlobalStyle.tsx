@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { Global, css } from '@Emotion/react'
+import { Global, css } from '@emotion/react'
 
 const defaultStyle = css`
      @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
@@ -16,82 +16,6 @@ const defaultStyle = css`
   #___gatsby {
     height: 100%;
   }
-
-  a,
-  a:hover {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  h1 {
-font-size: 2em;
-margin: 0;
-}
-
-h2 {
-font-size: 1.5em;
-margin-top: 0;
-margin-bottom: 0;
-}
-
-h3 {
-font-size: 1.17em;
-margin: 0;
-}
-
-h4 {
-font-size: 1em;
-}
-
-h5 {
-font-size: 0.83em;
-}
-
-
-
-  //table of contents
-	.table-of-contents {
-		font-family: Arial, sans-serif;
-		border: 1px solid #e0e0e0;
-		padding: 10px 20px;
-		width: 300px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		border-radius: 5px;
-	}
-
-	.table-of-contents ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.table-of-contents li {
-		color: black;
-	}
-
-	.table-of-contents a {
-		text-decoration: none;
-		color: inherit;
-		transition: color 0.2s;
-	}
-
-	.table-of-contents a:hover {
-		color: #777;
-	}
-
-	.table-of-contents li > p {
-		font-weight: bold;
-		margin-bottom: 5px;
-	}
-
-	.table-of-contents li ul li {
-		margin-left: 20px;
-	}
-	.table-of-contents li ol {
-		padding: 0;
-	}
-
 `
 
 const GlobalStyle: FunctionComponent = function () {

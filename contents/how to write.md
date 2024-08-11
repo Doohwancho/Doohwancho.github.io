@@ -49,13 +49,12 @@ that way, you can deduct everything from the fundamental unit with maximum 10 co
 ## a. Example
 
 
-Q. explain about computer Network
+Q. explain computer network
 
 1. Q. what happen when I type google.com on browser?
 2. show overall architecture in single picture including OSI 7 layer, LAN
 3. packet
 4. explain how packet is created, sent, and dealt by each module within that architecture. make sure to divide header by level of module abstraction(ex. client, LAN, Server starts with single '#', OSI Layer would start with double '#', ARP, TCP/IP, HTTP would start with triple '#', etc)
-5.
 
 ![](images/2023-10-10-19-29-15.png)
 

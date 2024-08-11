@@ -29,32 +29,85 @@ const MarkdownRenderer = styled.div`
   h2,
   h3 {
     font-weight: 800;
-    // margin-bottom: 30px;
   }
 
-  * + h1,
-  * + h2,
-  * + h3 {
-    margin-top: 30px;
-  }
-
-  hr + h1,
-  hr + h2,
-  hr + h3 {
-    margin-top: 0;
+  a,
+  a:hover {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   h1 {
-    font-size: 30px;
+  font-size: 2em;
+  margin-top: 10px;
+  margin-bottom: 10px;
   }
 
   h2 {
-    font-size: 25px;
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 10px;
   }
 
   h3 {
-    font-size: 20px;
+  font-size: 1.17em;
+  margin-top: 10px;
+  margin-bottom: 10px;
   }
+
+  h4 {
+  font-size: 1em;
+  }
+
+  h5 {
+  font-size: 0.83em;
+  }
+
+
+
+  //table of contents
+	.table-of-contents {
+		font-family: Arial, sans-serif;
+		border: 1px solid #e0e0e0;
+		padding: 10px 20px;
+		width: 300px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 5px;
+	}
+
+	.table-of-contents ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.table-of-contents li {
+		color: black;
+	}
+
+	.table-of-contents a {
+		text-decoration: none;
+		color: inherit;
+		transition: color 0.2s;
+	}
+
+	.table-of-contents a:hover {
+		color: #777;
+	}
+
+	.table-of-contents li > p {
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+
+	.table-of-contents li ul li {
+		margin-left: 20px;
+	}
+	.table-of-contents li ol {
+		padding: 0;
+	}
+
 
   // Adjust Quotation Element Style
   blockquote {
