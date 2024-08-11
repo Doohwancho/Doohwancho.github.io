@@ -22,10 +22,10 @@
 
 ## c. styles 
 1. src/pages/reset_css.css 로 css reset
-2. src/components/Common/GlobalStyle.tsx로 전반적인 css와 thoughts.md에 table of content의 css 적용
-3. portfolio tab을 위한 css는 src/pages/portfolio/InternetPeriodicTable.css에서 제어
-4. src/components/post/postContent.tsx 에서 .md 파일의 style 제어
-5. 나머지 각 컴포넌트의 스타일들은 해당 컴포넌트 안에 내제되어있다. 
+2. src/components/Common/GlobalStyle.tsx에는 /post/posts에 .md 파일 리스트에 style을 관장 + 전체적인 global style에 영향을 줌
+3. src/components/post/postContent.tsx 에서 .md 파일 내부의 style 제어 (ex. table of content)
+4. portfolio tab을 위한 css는 src/pages/portfolio/InternetPeriodicTable.css에서 제어
+5. 나머지 각 컴포넌트의 스타일들은 해당 컴포넌트 안에 내재되어있다. 
 
 
 # B. for developers
