@@ -56,6 +56,9 @@ const Sidebar: React.FC = () => {
         <NavLink to="/calculus/calculus">Calculus</NavLink>
       </NavSection>
       <NavSection>
+        <NavLink to="/statistics/statistics">Statistics</NavLink>
+      </NavSection>
+      <NavSection>
         <NavLink to="/physics/physics">Physics</NavLink>
       </NavSection>
       <NavSection>

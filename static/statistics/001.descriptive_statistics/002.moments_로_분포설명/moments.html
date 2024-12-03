@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            margin: 0; 
+            background: black; 
+            color: white; 
+            font-family: monospace;
+            overflow: hidden;
+        }
+        canvas { 
+            display: block; 
+        }
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        #stats {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .slider {
+            width: 200px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="controls">
+        Press:<br>
+        1: Mean<br>
+        2: Variance & SD<br>
+        3: Two Distributions (Covariance)<br>
+        Space: Toggle Animation<br>
+        <div id="sliders"></div>
+    </div>
+    <div id="stats"></div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const statsDiv = document.getElementById('stats');
+        const slidersDiv = document.getElementById('sliders');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let mode = 1;
+        let isAnimating = false;
+        let time = 0;
+        
+        // Parameters for distributions
+        let params = {
+            mean1: 0,
+            std1: 1,
+            mean2: 2,
+            std2: 1.5,
+            correlation: 0.5
+        };
+
+        // Create sliders
+        function createSlider(id, label, min, max, step, value) {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                ${label}: <span id="${id}-value">${value}</span>
+                <input type="range" id="${id}" 
+                    class="slider" min="${min}" max="${max}" 
+                    step="${step}" value="${value}">
+            `;
+            slidersDiv.appendChild(div);
+            
+            const slider = document.getElementById(id);
+            slider.addEventListener('input', function() {
+                document.getElementById(`${id}-value`).textContent = this.value;
+                params[id] = parseFloat(this.value);
+                draw();
+            });
+        }
+
+        createSlider('mean1', 'Mean μ₁', -3, 3, 0.1, 0);
+        createSlider('std1', 'Std σ₁', 0.1, 3, 0.1, 1);
+        createSlider('mean2', 'Mean μ₂', -3, 3, 0.1, 2);
+        createSlider('std2', 'Std σ₂', 0.1, 3, 0.1, 1.5);
+        createSlider('correlation', 'Correlation ρ', -1, 1, 0.1, 0.5);
+
+        function toScreen(x, y) {
+            return {
+                x: (x + 4) * canvas.width/8,
+                y: canvas.height/2 - y * canvas.height/4
+            };
+        }
+
+        function normalDist(x, mean, std) {
+            return Math.exp(-0.5 * Math.pow((x - mean) / std, 2)) / (std * Math.sqrt(2 * Math.PI));
+        }
+
+        function drawAxes() {
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 2;
+            
+            // X axis
+            const origin = toScreen(0, 0);
+            ctx.beginPath();
+            ctx.moveTo(toScreen(-4, 0).x, origin.y);
+            ctx.lineTo(toScreen(4, 0).x, origin.y);
+            ctx.stroke();
+            
+            // Y axis
+            ctx.beginPath();
+            ctx.moveTo(origin.x, toScreen(0, -2).y);
+            ctx.lineTo(origin.x, toScreen(0, 2).y);
+            ctx.stroke();
+        }
+
+        function drawNormalCurve(mean, std, color = '#4488ff') {
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            
+            for(let x = -4; x <= 4; x += 0.01) {
+                const y = normalDist(x, mean, std);
+                const point = toScreen(x, y * 2);
+                
+                if(x === -4) ctx.moveTo(point.x, point.y);
+                else ctx.lineTo(point.x, point.y);
+            }
+            ctx.stroke();
+        }
+
+        function drawMean() {
+            // Draw normal distribution
+            drawNormalCurve(params.mean1, params.std1);
+            
+            // Draw mean line
+            const meanPoint = toScreen(params.mean1, 0);
+            ctx.strokeStyle = '#ff4444';
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(meanPoint.x, toScreen(0, -2).y);
+            ctx.lineTo(meanPoint.x, toScreen(0, 2).y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Show mean value
+            statsDiv.innerHTML = `
+                Mean (μ) = ${params.mean1.toFixed(2)}<br>
+                Expected value of the distribution<br>
+                Center of mass<br>
+                ∫ x·f(x)dx = μ
+            `;
+        }
+
+        function drawVariance() {
+            // Draw normal distribution
+            drawNormalCurve(params.mean1, params.std1);
+            
+            // Highlight standard deviation ranges
+            for(let i = 1; i <= 3; i++) {
+                ctx.fillStyle = `rgba(68, 136, 255, ${0.1/i})`;
+                
+                const leftX = params.mean1 - i * params.std1;
+                const rightX = params.mean1 + i * params.std1;
+                
+                ctx.beginPath();
+                for(let x = leftX; x <= rightX; x += 0.01) {
+                    const y = normalDist(x, params.mean1, params.std1);
+                    const point = toScreen(x, y * 2);
+                    if(x === leftX) ctx.moveTo(point.x, toScreen(0, 0).y);
+                    ctx.lineTo(point.x, point.y);
+                }
+                ctx.lineTo(toScreen(rightX, 0).x, toScreen(0, 0).y);
+                ctx.fill();
+            }
+
+            statsDiv.innerHTML = `
+                Variance (σ²) = ${(params.std1 * params.std1).toFixed(2)}<br>
+                Standard Deviation (σ) = ${params.std1.toFixed(2)}<br>
+                68% within ±1σ<br>
+                95% within ±2σ<br>
+                99.7% within ±3σ
+            `;
+        }
+
+        function drawCovariance() {
+            // Draw two normal distributions
+            drawNormalCurve(params.mean1, params.std1, '#4488ff');
+            drawNormalCurve(params.mean2, params.std2, '#ff8844');
+            
+            // Show correlation coefficient
+            const cov = params.correlation * params.std1 * params.std2;
+            
+            statsDiv.innerHTML = `
+                Covariance = ${cov.toFixed(2)}<br>
+                Correlation (ρ) = ${params.correlation.toFixed(2)}<br>
+                σ₁ = ${params.std1.toFixed(2)}<br>
+                σ₂ = ${params.std2.toFixed(2)}<br>
+                μ₁ = ${params.mean1.toFixed(2)}<br>
+                μ₂ = ${params.mean2.toFixed(2)}
+            `;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            drawAxes();
+
+            switch(mode) {
+                case 1:
+                    drawMean();
+                    break;
+                case 2:
+                    drawVariance();
+                    break;
+                case 3:
+                    drawCovariance();
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            switch(e.key) {
+                case '1':
+                case '2':
+                case '3':
+                    mode = parseInt(e.key);
+                    break;
+                case ' ':
+                    isAnimating = !isAnimating;
+                    if(isAnimating) animate();
+                    break;
+            }
+            draw();
+        });
+
+        function animate() {
+            if(isAnimating) {
+                time += 0.02;
+                params.mean1 = Math.sin(time);
+                draw();
+                requestAnimationFrame(animate);
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            draw();
+        });
+
+        draw();
+    </script>
+</body>
+</html>
