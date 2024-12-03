@@ -25,12 +25,14 @@ const elements = [
   { symbol: 'Ts', name: 'Trend Search', category: 'selfmade-tool', description: "trend words crawler", link: "https://github.com/Doohwancho/TrendSearch"},
   { symbol: 'Ft', name: 'Floating Timer', category: 'selfmade-tool', description: "floating timer", link: "https://github.com/Doohwancho/floating_timer"},
   { symbol: 'Rl', name: 'Rock Lee', category: 'selfmade-tool', description: "github commit visualizer", link: "https://github.com/Doohwancho/RockLee"},
-  { symbol: 'Tf', name: 'transformer', category: 'yet', description: "just fun stuff", link:"#" },
-  { symbol: 'Mw', name: 'Ml+Webapp', category: 'yet', description: "webapp + ml", link:"#" },
-  { symbol: 'Ml', name: 'Meaning of Life', category: 'system', description: "meaning of life", link:"#" },
-  { symbol: 'Lr', name: 'How to Learn', category: 'system', description: "knowledge tree + tools", link:"#" },
-  { symbol: 'Hr', name: 'Human Relaions', category: 'yet', description: "", link:"#" },
-  { symbol: 'Ic', name: 'Income', category: 'yet', description: "", link:"#" },
+  // { symbol: 'Tf', name: 'transformer', category: 'yet', description: "just fun stuff", link:"#" },
+  // { symbol: 'Mw', name: 'Ml+Webapp', category: 'yet', description: "webapp + ml", link:"#" },
+  // { symbol: 'Ml', name: 'Meaning of Life', category: 'system', description: "meaning of life", link:"#" },
+  // { symbol: 'Lr', name: 'How to Learn', category: 'system', description: "knowledge tree + tools", link:"#" },
+  // { symbol: 'Se', name: 'How Self Works', category: 'yet', description: "Understand how self works", link:"#" },
+  // { symbol: 'Hr', name: 'Human Relaions', category: 'yet', description: "", link:"#" },
+  // { symbol: 'Wk', name: 'How to Work', category: 'yet', description: "", link:"#" },
+  // { symbol: 'Ic', name: 'Income', category: 'yet', description: "", link:"#" },
 ];
 
 const InternetPeriodicTable = () => {
@@ -71,10 +73,10 @@ const InternetPeriodicTable = () => {
             <span className="legend-table__text">Web App</span>
             <span className="legend-table__marker selfmade-tool"></span>
             <span className="legend-table__text">Selfmade Tools</span>
-            <span className="legend-table__marker machine-learning"></span>
+            {/* <span className="legend-table__marker machine-learning"></span>
             <span className="legend-table__text">Machine Learning</span>
             <span className="legend-table__marker system"></span>
-            <span className="legend-table__text">System</span>
+            <span className="legend-table__text">System</span> */}
         </div>
       </div>
     </div>

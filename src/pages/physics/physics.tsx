@@ -72,12 +72,8 @@ const ToyArts: FunctionComponent<IntroductionProps> = function({
           <div style={{ marginLeft: '150px', width: 'calc(100% - 150px)' }}>
             <Background>
                 <Wrapper>
-                    {/* <ProfileImage profileImage={profileImage} /> */}
-
-                    <StyledLink to="/arts/snakegame/SnakeGame">SnakeGame</StyledLink>
-                    <StyledLink to="/arts/hamberger/Hamberger">Hamberger</StyledLink>
+                    <StyledLink to="/physics/test/html_redirection">SinBall</StyledLink>
                     <div>
-                        {/* <SubTitle>...</SubTitle> */}
                         <Title>Play!</Title>
                     </div>
                 </Wrapper>

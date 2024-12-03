@@ -47,47 +47,22 @@ const Sidebar: React.FC = () => {
   return (
     <SidebarWrapper>
       <NavSection>
-        {/* <NavHeader>Portfolio</NavHeader> */}
         <NavLink to="/portfolio/portfolio">Project</NavLink>
       </NavSection>
       <NavSection>
+        <NavLink to="/interactive_design/play">Interactive Design</NavLink>
+      </NavSection>
+      <NavSection>
+        <NavLink to="/physics/physics">Physics</NavLink>
+      </NavSection>
+      <NavSection>
         <NavLink to="/ps">PS</NavLink>
-        {/* <Template
-          title={frontmatter.title}
-          description={frontmatter.description || ''}
-          url={`/ps/${frontmatter.slug}`}
-        >
-          <div>
-            <h1>{frontmatter.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-          </div>
-        </Template> */}
-
       </NavSection>
       <NavSection>
-        {/* <NavHeader>Toy Projects</NavHeader> */}
-        <NavLink to="/arts/toy_arts">art</NavLink>
-        {/* <NavLink to="/play/hamberger/Hamberger">Hamburger</NavLink> */}
-      </NavSection>
-      <NavSection>
-        {/* <NavHeader>Blog Posts</NavHeader> */}
         <NavLink to="/post/posts">Post</NavLink>
       </NavSection>
     </SidebarWrapper>
   )
 }
-
-// export const pageQuery = graphql`
-//   query($slug: String!) {
-//     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-//       html
-//       frontmatter {
-//         title
-//         description
-//         slug
-//       }
-//     }
-//   }
-// `
 
 export default Sidebar
