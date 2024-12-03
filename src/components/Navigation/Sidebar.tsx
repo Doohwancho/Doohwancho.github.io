@@ -50,10 +50,13 @@ const Sidebar: React.FC = () => {
         <NavLink to="/portfolio/portfolio">Project</NavLink>
       </NavSection>
       <NavSection>
-        <NavLink to="/interactive_design/play">Interactive Design</NavLink>
+        <NavLink to="/algebra/algebra">Algebra</NavLink>
       </NavSection>
       <NavSection>
         <NavLink to="/physics/physics">Physics</NavLink>
+      </NavSection>
+      <NavSection>
+        <NavLink to="/interactive_design/play">Interactive Design</NavLink>
       </NavSection>
       <NavSection>
         <NavLink to="/ps">PS</NavLink>
